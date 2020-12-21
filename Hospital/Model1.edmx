@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище HospitalDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="doc">
+          <Key>
+            <PropertyRef Name="id_doc" />
+          </Key>
+          <Property Name="id_doc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="surname" Type="nvarchar(max)" />
+          <Property Name="last_name" Type="nvarchar(max)" />
+          <Property Name="p_num" Type="nvarchar(max)" />
+          <Property Name="id_position" Type="int" />
+          <Property Name="login" Type="nvarchar(max)" />
+          <Property Name="password" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="list">
+          <Key>
+            <PropertyRef Name="id_list" />
+          </Key>
+          <Property Name="id_list" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_doc" Type="int" />
+          <Property Name="id_person" Type="int" />
+          <Property Name="course_name" Type="nvarchar(max)" />
+          <Property Name="a_date" Type="date" />
+          <Property Name="time" Type="nvarchar(max)" />
+          <Property Name="notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="person">
+          <Key>
+            <PropertyRef Name="id_person" />
+          </Key>
+          <Property Name="id_person" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="surname" Type="nvarchar(max)" />
+          <Property Name="last_name" Type="nvarchar(max)" />
+          <Property Name="adress" Type="nvarchar(max)" />
+          <Property Name="b_date" Type="date" />
+          <Property Name="p_num" Type="nvarchar(max)" />
+          <Property Name="b_type" Type="nvarchar(max)" />
+          <Property Name="insurance_c" Type="nvarchar(max)" />
+          <Property Name="insurance_num" Type="int" />
+        </EntityType>
+        <EntityType Name="position">
+          <Key>
+            <PropertyRef Name="id_position" />
+          </Key>
+          <Property Name="id_position" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="reception">
+          <Key>
+            <PropertyRef Name="id_rec" />
+          </Key>
+          <Property Name="id_rec" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_person" Type="int" />
+          <Property Name="r_date" Type="date" />
+          <Property Name="l_date" Type="date" />
+        </EntityType>
+        <Association Name="FK_doc_position">
+          <End Role="position" Type="Self.position" Multiplicity="0..1" />
+          <End Role="doc" Type="Self.doc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="position">
+              <PropertyRef Name="id_position" />
+            </Principal>
+            <Dependent Role="doc">
+              <PropertyRef Name="id_position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_list_doc">
+          <End Role="doc" Type="Self.doc" Multiplicity="0..1" />
+          <End Role="list" Type="Self.list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doc">
+              <PropertyRef Name="id_doc" />
+            </Principal>
+            <Dependent Role="list">
+              <PropertyRef Name="id_doc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_list_person">
+          <End Role="person" Type="Self.person" Multiplicity="0..1" />
+          <End Role="list" Type="Self.list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="id_person" />
+            </Principal>
+            <Dependent Role="list">
+              <PropertyRef Name="id_person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_reception_person">
+          <End Role="person" Type="Self.person" Multiplicity="0..1" />
+          <End Role="reception" Type="Self.reception" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="id_person" />
+            </Principal>
+            <Dependent Role="reception">
+              <PropertyRef Name="id_person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище HospitalDBModelContainer">
+          <EntitySet Name="doc" EntityType="Self.doc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="list" EntityType="Self.list" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="person" EntityType="Self.person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="position" EntityType="Self.position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reception" EntityType="Self.reception" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_doc_position" Association="Self.FK_doc_position">
+            <End Role="position" EntitySet="position" />
+            <End Role="doc" EntitySet="doc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_list_doc" Association="Self.FK_list_doc">
+            <End Role="doc" EntitySet="doc" />
+            <End Role="list" EntitySet="list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_list_person" Association="Self.FK_list_person">
+            <End Role="person" EntitySet="person" />
+            <End Role="list" EntitySet="list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reception_person" Association="Self.FK_reception_person">
+            <End Role="person" EntitySet="person" />
+            <End Role="reception" EntitySet="reception" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HospitalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="doc">
+          <Key>
+            <PropertyRef Name="id_doc" />
+          </Key>
+          <Property Name="id_doc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="last_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="p_num" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_position" Type="Int32" />
+          <Property Name="login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="position" Relationship="Self.FK_doc_position" FromRole="doc" ToRole="position" />
+          <NavigationProperty Name="list" Relationship="Self.FK_list_doc" FromRole="doc" ToRole="list" />
+        </EntityType>
+        <EntityType Name="list">
+          <Key>
+            <PropertyRef Name="id_list" />
+          </Key>
+          <Property Name="id_list" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_doc" Type="Int32" />
+          <Property Name="id_person" Type="Int32" />
+          <Property Name="course_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="a_date" Type="DateTime" Precision="0" />
+          <Property Name="time" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="doc" Relationship="Self.FK_list_doc" FromRole="list" ToRole="doc" />
+          <NavigationProperty Name="person" Relationship="Self.FK_list_person" FromRole="list" ToRole="person" />
+        </EntityType>
+        <EntityType Name="person">
+          <Key>
+            <PropertyRef Name="id_person" />
+          </Key>
+          <Property Name="id_person" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="last_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="b_date" Type="DateTime" Precision="0" />
+          <Property Name="p_num" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="b_type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="insurance_c" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="insurance_num" Type="Int32" />
+          <NavigationProperty Name="list" Relationship="Self.FK_list_person" FromRole="person" ToRole="list" />
+          <NavigationProperty Name="reception" Relationship="Self.FK_reception_person" FromRole="person" ToRole="reception" />
+        </EntityType>
+        <EntityType Name="position">
+          <Key>
+            <PropertyRef Name="id_position" />
+          </Key>
+          <Property Name="id_position" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="doc" Relationship="Self.FK_doc_position" FromRole="position" ToRole="doc" />
+        </EntityType>
+        <EntityType Name="reception">
+          <Key>
+            <PropertyRef Name="id_rec" />
+          </Key>
+          <Property Name="id_rec" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_person" Type="Int32" />
+          <Property Name="r_date" Type="DateTime" Precision="0" />
+          <Property Name="l_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="person" Relationship="Self.FK_reception_person" FromRole="reception" ToRole="person" />
+        </EntityType>
+        <Association Name="FK_doc_position">
+          <End Role="position" Type="Self.position" Multiplicity="0..1" />
+          <End Role="doc" Type="Self.doc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="position">
+              <PropertyRef Name="id_position" />
+            </Principal>
+            <Dependent Role="doc">
+              <PropertyRef Name="id_position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_list_doc">
+          <End Role="doc" Type="Self.doc" Multiplicity="0..1" />
+          <End Role="list" Type="Self.list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doc">
+              <PropertyRef Name="id_doc" />
+            </Principal>
+            <Dependent Role="list">
+              <PropertyRef Name="id_doc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_list_person">
+          <End Role="person" Type="Self.person" Multiplicity="0..1" />
+          <End Role="list" Type="Self.list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="id_person" />
+            </Principal>
+            <Dependent Role="list">
+              <PropertyRef Name="id_person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_reception_person">
+          <End Role="person" Type="Self.person" Multiplicity="0..1" />
+          <End Role="reception" Type="Self.reception" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="id_person" />
+            </Principal>
+            <Dependent Role="reception">
+              <PropertyRef Name="id_person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HospitalDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="doc" EntityType="Self.doc" />
+          <EntitySet Name="list" EntityType="Self.list" />
+          <EntitySet Name="person" EntityType="Self.person" />
+          <EntitySet Name="position" EntityType="Self.position" />
+          <EntitySet Name="reception" EntityType="Self.reception" />
+          <AssociationSet Name="FK_doc_position" Association="Self.FK_doc_position">
+            <End Role="position" EntitySet="position" />
+            <End Role="doc" EntitySet="doc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_list_doc" Association="Self.FK_list_doc">
+            <End Role="doc" EntitySet="doc" />
+            <End Role="list" EntitySet="list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_list_person" Association="Self.FK_list_person">
+            <End Role="person" EntitySet="person" />
+            <End Role="list" EntitySet="list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reception_person" Association="Self.FK_reception_person">
+            <End Role="person" EntitySet="person" />
+            <End Role="reception" EntitySet="reception" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище HospitalDBModelContainer" CdmEntityContainer="HospitalDBEntities">
+          <EntitySetMapping Name="doc">
+            <EntityTypeMapping TypeName="HospitalDBModel.doc">
+              <MappingFragment StoreEntitySet="doc">
+                <ScalarProperty Name="id_doc" ColumnName="id_doc" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="p_num" ColumnName="p_num" />
+                <ScalarProperty Name="id_position" ColumnName="id_position" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="list">
+            <EntityTypeMapping TypeName="HospitalDBModel.list">
+              <MappingFragment StoreEntitySet="list">
+                <ScalarProperty Name="id_list" ColumnName="id_list" />
+                <ScalarProperty Name="id_doc" ColumnName="id_doc" />
+                <ScalarProperty Name="id_person" ColumnName="id_person" />
+                <ScalarProperty Name="course_name" ColumnName="course_name" />
+                <ScalarProperty Name="a_date" ColumnName="a_date" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="person">
+            <EntityTypeMapping TypeName="HospitalDBModel.person">
+              <MappingFragment StoreEntitySet="person">
+                <ScalarProperty Name="id_person" ColumnName="id_person" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="adress" ColumnName="adress" />
+                <ScalarProperty Name="b_date" ColumnName="b_date" />
+                <ScalarProperty Name="p_num" ColumnName="p_num" />
+                <ScalarProperty Name="b_type" ColumnName="b_type" />
+                <ScalarProperty Name="insurance_c" ColumnName="insurance_c" />
+                <ScalarProperty Name="insurance_num" ColumnName="insurance_num" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="position">
+            <EntityTypeMapping TypeName="HospitalDBModel.position">
+              <MappingFragment StoreEntitySet="position">
+                <ScalarProperty Name="id_position" ColumnName="id_position" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reception">
+            <EntityTypeMapping TypeName="HospitalDBModel.reception">
+              <MappingFragment StoreEntitySet="reception">
+                <ScalarProperty Name="id_rec" ColumnName="id_rec" />
+                <ScalarProperty Name="id_person" ColumnName="id_person" />
+                <ScalarProperty Name="r_date" ColumnName="r_date" />
+                <ScalarProperty Name="l_date" ColumnName="l_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
