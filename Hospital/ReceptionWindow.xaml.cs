@@ -28,6 +28,7 @@ namespace Hospital
             if(Get.admin!=1)
             {
                 doc_edit_b.Visibility = Visibility.Hidden;
+                edit_b.Visibility = Visibility.Hidden;
             }
         }
         HospitalDBEntities admin = new HospitalDBEntities();
@@ -197,10 +198,6 @@ namespace Hospital
             list_datag.ItemsSource = admin.list.ToList();
         }
 
-        private void list_datag_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
         private void Window_Activated(object sender, EventArgs e)
         {
@@ -211,6 +208,14 @@ namespace Hospital
         {
             EditWindow a = new EditWindow();
             a.Show();
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            list a = list_datag.SelectedItem as list;
+            if (a == null) { return; }
+            admin.SaveChanges();
+            list_datag.ItemsSource = admin.list.ToList();
         }
     }
 }

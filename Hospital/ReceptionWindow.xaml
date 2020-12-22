@@ -61,7 +61,7 @@
         <Label Content="Номер палаты" HorizontalAlignment="Left" Margin="260,765,0,0" VerticalAlignment="Top" Width="120"/>
         <Button Content="Записать на прием" HorizontalAlignment="Left" Margin="11,444,0,0" VerticalAlignment="Top" Width="119" Click="Button_Click_7"/>
 
-        <DataGrid x:Name="list_datag" HorizontalAlignment="Left" Height="260" Margin="690,475,0,0" VerticalAlignment="Top" Width="838" AutoGenerateColumns="False" SelectionChanged="list_datag_SelectionChanged">
+        <DataGrid x:Name="list_datag" HorizontalAlignment="Left" Height="260" Margin="690,475,0,0" VerticalAlignment="Top" Width="838" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер записи" Binding="{Binding id_list}" Width="1*"/>
                 <DataGridTextColumn Header="Номер доктора" Binding="{Binding id_doc}" Width="1*"/>
@@ -74,6 +74,7 @@
         </DataGrid>
         <Button Content="Удалить" HorizontalAlignment="Left" Margin="690,740,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click_8"/>
         <Button x:Name="doc_edit_b" Content="Редактировать персонал" HorizontalAlignment="Left" Margin="690,808,0,0" VerticalAlignment="Top" Width="138" Height="45" Click="doc_edit_b_Click"/>
+        <Button x:Name="edit_b" Content="Сохранить изменения" HorizontalAlignment="Left" Margin="769,740,0,0" VerticalAlignment="Top" Width="131" Click="Button_Click_6"/>
 
     </Grid>
 </Window>
