@@ -30,7 +30,7 @@ namespace Hospital
         public string p_num { get; set; }
         public string b_type { get; set; }
         public string insurance_c { get; set; }
-        public Nullable<int> insurance_num { get; set; }
+        public Nullable<long> insurance_num { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<list> list { get; set; }

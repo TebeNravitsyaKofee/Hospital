@@ -30,5 +30,6 @@ namespace Hospital
         public virtual DbSet<person> person { get; set; }
         public virtual DbSet<position> position { get; set; }
         public virtual DbSet<reception> reception { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

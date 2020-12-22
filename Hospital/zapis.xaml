@@ -1,0 +1,26 @@
+﻿<Window x:Class="Hospital.zapis"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital"
+        mc:Ignorable="d"
+        Title="Window1" Height="453.581" Width="421.618">
+    <Grid>
+        <DataGrid x:Name="doc_dg" HorizontalAlignment="Left" Height="302" Margin="10,34,0,0" VerticalAlignment="Top" Width="395" AutoGenerateColumns="False" SelectionChanged="doc_dg_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding surname}" Width="1*"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding name}" Width="1*"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding last_name}" Width="1*"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding position.name}" Width="1*"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox x:Name="date_tb" HorizontalAlignment="Left" Height="23" Margin="10,367,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="10,395,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Label Content="Введите дату " HorizontalAlignment="Left" Margin="10,341,0,0" VerticalAlignment="Top"/>
+        <Label Content="Выберите врача" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Width="111"/>
+        <TextBox x:Name="time_tb" HorizontalAlignment="Left" Height="23" Margin="135,367,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Введите время " HorizontalAlignment="Left" Margin="135,341,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

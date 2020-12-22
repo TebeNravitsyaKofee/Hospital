@@ -12,14 +12,12 @@ namespace Hospital
     using System;
     using System.Collections.Generic;
     
-    public partial class reception
+    public partial class sysdiagrams
     {
-        public int id_rec { get; set; }
-        public Nullable<int> id_person { get; set; }
-        public Nullable<System.DateTime> r_date { get; set; }
-        public Nullable<System.DateTime> l_date { get; set; }
-        public Nullable<int> room_num { get; set; }
-    
-        public virtual person person { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

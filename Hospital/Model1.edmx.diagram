@@ -5,15 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="7da87d94a8ea44ca9f3026d1e1ffe7f0" Name="Diagram1">
-        <EntityTypeShape EntityType="HospitalDBModel.doc" Width="1.5" PointX="0.625" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDBModel.list" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDBModel.person" Width="1.5" PointX="5.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.doc" Width="1.5" PointX="0.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.list" Width="1.5" PointX="3.125" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.person" Width="1.5" PointX="5.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalDBModel.position" Width="1.5" PointX="2.875" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDBModel.reception" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.reception" Width="1.5" PointX="5.75" PointY="6.25" IsExpanded="true" />
         <AssociationConnector Association="HospitalDBModel.FK_doc_position" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalDBModel.FK_list_doc" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalDBModel.FK_list_person" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalDBModel.FK_reception_person" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HospitalDBModel.sysdiagrams" Width="1.5" PointX="8.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
